@@ -1,3 +1,5 @@
+import quizData from "./quizData.js";
+
 let currentQuestion = 0;
 
 function displayQuestion() {
