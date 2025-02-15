@@ -1,4 +1,4 @@
-const quizData = [
+export default quizData = [
   {
     question: "日本薬局方は、(1)、生薬総則、(2)、(3)、及び(4)から構成される。",
     answer: ["通則","製剤総則", "一般試験法", "医薬品各条"]
@@ -16,5 +16,3 @@ const quizData = [
     answer: ["BET"]
   }
 ];
-
-export default quizData;
