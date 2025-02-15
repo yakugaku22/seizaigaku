@@ -1,4 +1,4 @@
-import quizData from "/quizData.js";
+import quizData from "quizData.js";
 
 let currentQuestion = 0;
 
