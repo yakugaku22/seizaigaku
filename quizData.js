@@ -16,3 +16,5 @@ const quizData = [
     answer: ["BET"]
   }
 ];
+
+export default quizData;
