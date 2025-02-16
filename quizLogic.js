@@ -62,7 +62,12 @@ function nextQuestion() {
     if (currentQuestion < quizData.length) {
         displayQuestion();
     } else {
-        alert("クイズ終了！");
+        // クイズ終了時にスコア表示
+        document.getElementById("quiz-container").innerHTML = `
+            <h2>最後まで解いてくれてありがとう！テスト頑張ってね！</h2>
+            <p>あなたの正解数: ${correctCount} / ${quizData.length} 問</p>
+            <button onclick="location.reload()">もう一度挑戦</button>
+        `;
     }
 }
 
