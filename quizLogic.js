@@ -66,4 +66,6 @@ function nextQuestion() {
     }
 }
 
+window.nextQuestion = nextQuestion;
+
 document.addEventListener("DOMContentLoaded", loadQuizData);
