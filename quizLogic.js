@@ -1,9 +1,19 @@
-import quizData from "./quizData.json";
-
+let quizData = [];
 let currentQuestion = 0;
 let correctCount = 0; // 正解数をカウントする変数
 
+// JSON データを取得
+fetch("./quizData.json")
+    .then(response => response.json())
+    .then(data => {
+        quizData = data;
+        displayQuestion();
+    })
+    .catch(error => console.error("データ取得エラー:", error));
+
 function displayQuestion() {
+    if (quizData.length === 0) return; // データが読み込まれる前に実行されるのを防ぐ
+
     const q = quizData[currentQuestion];
     document.getElementById("question").textContent = q.question;
 
@@ -60,7 +70,8 @@ function nextQuestion() {
     }
 }
 
-document.addEventListener("DOMContentLoaded", displayQuestion);
-window.checkAnswer = checkAnswer;
-window.nextQuestion = nextQuestion;
-
+document.addEventListener("DOMContentLoaded", () => {
+    window.checkAnswer = checkAnswer;
+    window.nextQuestion = nextQuestion;
+});
+     
