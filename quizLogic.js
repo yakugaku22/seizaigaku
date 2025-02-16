@@ -1,20 +1,8 @@
-let quizData = [];
 let currentQuestion = 0;
-
-async function loadQuizData() {
-    try {
-        const response = await fetch("quizData.json");
-        quizData = await response.json();
-        displayQuestion();
-    } catch (error) {
-        console.error("データの読み込みに失敗しました", error);
-    }
-}
+let correctCount = 0; // 正解数をカウントする変数
 
 function displayQuestion() {
-    if (quizData.length === 0) return;
     const q = quizData[currentQuestion];
-
     document.getElementById("question").textContent = q.question;
 
     const inputContainer = document.getElementById("input-container");
@@ -47,6 +35,7 @@ function checkAnswer() {
     if (allCorrect) {
         document.getElementById("result").textContent = "正解！";
         document.getElementById("result").style.color = "green";
+        correctCount++; // 正解数を増やす
     } else {
         document.getElementById("result").textContent = `不正解。正解は「${correctAnswers.join("、")}」です。`;
         document.getElementById("result").style.color = "red";
@@ -55,8 +44,6 @@ function checkAnswer() {
     document.getElementById("next-button").style.display = "inline-block";
 }
 
-window.checkAnswer = checkAnswer;
-
 function nextQuestion() {
     currentQuestion++;
     if (currentQuestion < quizData.length) {
@@ -64,13 +51,14 @@ function nextQuestion() {
     } else {
         // クイズ終了時にスコア表示
         document.getElementById("quiz-container").innerHTML = `
-            <h2>最後まで解いてくれてありがとう！テスト頑張ってね！</h2>
+            <h2>クイズ終了！</h2>
             <p>あなたの正解数: ${correctCount} / ${quizData.length} 問</p>
             <button onclick="location.reload()">もう一度挑戦</button>
         `;
     }
 }
 
+document.addEventListener("DOMContentLoaded", displayQuestion);
+window.checkAnswer = checkAnswer;
 window.nextQuestion = nextQuestion;
 
-document.addEventListener("DOMContentLoaded", loadQuizData);
