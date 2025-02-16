@@ -1,4 +1,4 @@
-import quizData from "quizData.json";
+import quizData from "./quizData.json";
 
 let currentQuestion = 0;
 let correctCount = 0; // 正解数をカウントする変数
