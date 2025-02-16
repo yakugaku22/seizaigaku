@@ -55,6 +55,8 @@ function checkAnswer() {
     document.getElementById("next-button").style.display = "inline-block";
 }
 
+window.checkAnswer = checkAnswer;
+
 function nextQuestion() {
     currentQuestion++;
     if (currentQuestion < quizData.length) {
