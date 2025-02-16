@@ -1,9 +1,20 @@
-import quizData from "quizData.js";
-
+let quizData = [];
 let currentQuestion = 0;
 
+async function loadQuizData() {
+    try {
+        const response = await fetch("quizData.json");
+        quizData = await response.json();
+        displayQuestion();
+    } catch (error) {
+        console.error("データの読み込みに失敗しました", error);
+    }
+}
+
 function displayQuestion() {
+    if (quizData.length === 0) return;
     const q = quizData[currentQuestion];
+
     document.getElementById("question").textContent = q.question;
 
     const inputContainer = document.getElementById("input-container");
@@ -18,7 +29,7 @@ function displayQuestion() {
     });
 
     document.getElementById("result").textContent = "";
-    document.getElementById("next-button").style.display = "none"; // 「次へ」ボタンを隠す
+    document.getElementById("next-button").style.display = "none";
 }
 
 function checkAnswer() {
@@ -41,7 +52,7 @@ function checkAnswer() {
         document.getElementById("result").style.color = "red";
     }
 
-    document.getElementById("next-button").style.display = "inline-block"; // 「次へ」ボタンを表示
+    document.getElementById("next-button").style.display = "inline-block";
 }
 
 function nextQuestion() {
@@ -53,5 +64,4 @@ function nextQuestion() {
     }
 }
 
-document.addEventListener("DOMContentLoaded", displayQuestion);
-
+document.addEventListener("DOMContentLoaded", loadQuizData);
