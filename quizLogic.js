@@ -63,7 +63,7 @@ function nextQuestion() {
     } else {
         // クイズ終了時にスコア表示
         document.getElementById("quiz-container").innerHTML = `
-            <h2>クイズ終了！</h2>
+            <h2>最後まで解いてくれてありがとう！テスト頑張ってね！</h2>
             <p>あなたの正解数: ${correctCount} / ${quizData.length} 問</p>
             <button onclick="location.reload()">もう一度挑戦</button>
         `;
